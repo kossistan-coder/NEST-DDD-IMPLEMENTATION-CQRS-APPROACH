@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/users/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/users/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/users",
+  "projects": {
+    "users": {
+      "type": "application",
+      "root": "apps/users",
+      "entryFile": "main",
+      "sourceRoot": "apps/users/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/users/tsconfig.app.json"
+      }
+    },
+    "payment-gateway": {
+      "type": "application",
+      "root": "apps/payment-gateway",
+      "entryFile": "main",
+      "sourceRoot": "apps/payment-gateway/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/payment-gateway/tsconfig.app.json"
+      }
+    },
+    "auth": {
+      "type": "library",
+      "root": "libs/auth",
+      "entryFile": "index",
+      "sourceRoot": "libs/auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/auth/tsconfig.lib.json"
+      }
+    },
+    "payment": {
+      "type": "library",
+      "root": "libs/payment",
+      "entryFile": "index",
+      "sourceRoot": "libs/payment/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/payment/tsconfig.lib.json"
+      }
+    }
+  }
+}
