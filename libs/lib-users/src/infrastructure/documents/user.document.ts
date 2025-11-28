@@ -1,8 +1,9 @@
-import { User } from "@app/lib-users/domain/entities/user.aggregate";
-import { Prop, Schema } from "@nestjs/mongoose";
+import { User } from "@app/lib-users/domain/entities/user.entity";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Document } from "mongoose";
 
 @Schema({ collection: 'users', timestamps: true, versionKey: false })
-export class UserDocument {
+export class UserDocument extends Document {
     @Prop({ type: String, required: true, unique: true, index: true })
     id: string;
 
@@ -44,7 +45,6 @@ export class UserDocument {
             id: this.id,
             name: this.name,
             email: this.email,
-            password: this.passwordHash,
             status: this.status,
             createdAt: this.createdAt,
             updatedAt: this.updatedAt,
@@ -56,16 +56,18 @@ export class UserDocument {
 
     static fromDomain(user: User): Partial<UserDocument> {
         return {
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            passwordHash: user.password,
-            status: user.status,
-            createdAt: user.createdAt,
-            updatedAt: user.updatedAt,
-            preferences: user.preferences,
-            isEmailVerified: user.isEmailVerified,
-            lastLoginAt: user.lastLoginAt,
+            id: user.getId(),
+            name: user.getName(),
+            email: user.getEmail(),
+            passwordHash: user.getPassword(),
+            status: user.getStatus(),
+            createdAt: user.getCreatedAt(),
+            updatedAt: user.getUpdatedAt(),
+            preferences: user.getPreferences(),
+            isEmailVerified: user.getIsEmailVerified(),
+            lastLoginAt: user.getLastLoginAt(),
         };
     }
 }
+
+export const UserSchema = SchemaFactory.createForClass(UserDocument);

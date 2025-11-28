@@ -1,8 +1,11 @@
 import { Module } from '@nestjs/common';
-import { LibUsersService } from './lib-users.service';
+import { LibUserApplicationModule } from './application/lib-user-application.module';
 
 @Module({
-  providers: [LibUsersService],
-  exports: [LibUsersService],
+  imports: [
+    LibUserApplicationModule
+  ],
+  providers: [],
+  exports: [LibUserApplicationModule],
 })
-export class LibUsersModule {}
+export class LibUsersModule { }

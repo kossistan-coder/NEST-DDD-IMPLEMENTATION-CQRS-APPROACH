@@ -1,5 +1,6 @@
 import { DynamicModule, Module } from "@nestjs/common";
 import { LibUserDomainModule } from "../domain/lib-user.domain.module";
+import { UserRepository } from "./repositories/user.repository";
 
 @Module({})
 export class LibUserInfrastructureModule {
@@ -9,8 +10,8 @@ export class LibUserInfrastructureModule {
             imports: [
                 LibUserDomainModule.forRoot()
             ],
-            providers: [],
-            exports: []
+            providers: [UserRepository],
+            exports: [UserRepository]
         }
     }
 }

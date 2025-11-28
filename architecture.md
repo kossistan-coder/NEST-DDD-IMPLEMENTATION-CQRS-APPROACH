@@ -1,37 +1,29 @@
 libs/
-└── order/                          # @org/order
+└── user/
     └── src/
-        ├── domain/                 # 100 % pur
+        ├── domain/
         │   ├── entities/
+        │   │   └── user.aggregate.ts          # ← User avec méthodes métier
         │   ├── value-objects/
-        │   ├── ports/              # ← interfaces seulement
-        │   ├── services/           # ← logique métier pure (@Injectable OK)
-        │   └── domain.module.ts
+        │   │   ├── email.vo.ts
+        │   │   ├── password.vo.ts
+        │   │   └── user-id.vo.ts
+        │   ├── events/
+        │   │   └── user-registered.event.ts
+        │   └── exceptions/
+        │       └── user-already-exists.exception.ts
         │
-        ├── application/            # ← Use-cases = ce qui orchestre le domaine
-        │   ├── commands/
-        │   │   ├── create-order.command.ts
-        │   │   └── create-order.handler.ts      # ← @CommandHandler()
-        │   ├── queries/
-        │   └── use-cases/                        # ← version sans CQRS
-        │       └── place-order.use-case.ts       # ← @Injectable()
+        ├── application/
+        │   └── use-cases/
+        │       ├── register-user.use-case.ts
+        │       └── login-user.use-case.ts
         │
         └── infrastructure/
-            ├── persistence/
-            │   ├── mongo/documents/
-            │   └── postgres/entities/
+            ├── documents/
+            │   └── user.document.ts               # ← @Schema()
             │
-            ├── adapters/                      # ← TOUT ce qui parle à l’extérieur
-            │   ├── stripe-payment.adapter.ts   # ← HttpService.post(...)
-            │   ├── loyalty-http.adapter.ts
-            │   ├── catalog-grpc.adapter.ts
-            │   └── notification-kafka.adapter.ts
+            ├── mappers/
+            │   └── user.mapper.ts                 # ← toDomain() / toPersistence()
             │
-            ├── clients/                       # ← clients générés (gRPC, GraphQL)
-            │   └── catalog.grpc-client.ts
-            │
-            ├── services/                      # ← services « techniques » de la lib
-            │   ├── email.service.ts           # ← envoie des mails via Resend/Sendgrid
-            │   └── pdf-generator.service.ts
-            │
-            └── infrastructure.module.ts       # ← forRoot() qui fournit tout
+            └── repositories/
+                └── user.repository.ts             # ← TON CODE GAGNANT CI-DESSOUS
