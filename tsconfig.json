@@ -29,6 +29,36 @@
       ],
       "@app/payment/*": [
         "libs/payment/src/*"
+      ],
+      "@app/core": [
+        "libs/core/src"
+      ],
+      "@app/core/*": [
+        "libs/core/src/*"
+      ],
+      "@app/lib-users": [
+        "libs/lib-users/src"
+      ],
+      "@app/lib-users/*": [
+        "libs/lib-users/src/*"
+      ],
+      "@app/lib-auth": [
+        "libs/lib-auth/src"
+      ],
+      "@app/lib-auth/*": [
+        "libs/lib-auth/src/*"
+      ],
+      "@app/lib-core": [
+        "libs/lib-core/src"
+      ],
+      "@app/lib-core/*": [
+        "libs/lib-core/src/*"
+      ],
+      "@app/lib-mail": [
+        "libs/lib-mail/src"
+      ],
+      "@app/lib-mail/*": [
+        "libs/lib-mail/src/*"
       ]
     }
   }

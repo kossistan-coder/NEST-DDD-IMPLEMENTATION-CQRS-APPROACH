@@ -28,22 +28,40 @@
         "tsConfigPath": "apps/payment-gateway/tsconfig.app.json"
       }
     },
-    "auth": {
+    "lib-users": {
       "type": "library",
-      "root": "libs/auth",
+      "root": "libs/lib-users",
       "entryFile": "index",
-      "sourceRoot": "libs/auth/src",
+      "sourceRoot": "libs/lib-users/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/auth/tsconfig.lib.json"
+        "tsConfigPath": "libs/lib-users/tsconfig.lib.json"
       }
     },
-    "payment": {
+    "lib-auth": {
       "type": "library",
-      "root": "libs/payment",
+      "root": "libs/lib-auth",
       "entryFile": "index",
-      "sourceRoot": "libs/payment/src",
+      "sourceRoot": "libs/lib-auth/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/payment/tsconfig.lib.json"
+        "tsConfigPath": "libs/lib-auth/tsconfig.lib.json"
+      }
+    },
+    "lib-core": {
+      "type": "library",
+      "root": "libs/lib-core",
+      "entryFile": "index",
+      "sourceRoot": "libs/lib-core/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/lib-core/tsconfig.lib.json"
+      }
+    },
+    "lib-mail": {
+      "type": "library",
+      "root": "libs/lib-mail",
+      "entryFile": "index",
+      "sourceRoot": "libs/lib-mail/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/lib-mail/tsconfig.lib.json"
       }
     }
   }
