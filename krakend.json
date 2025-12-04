@@ -9,7 +9,7 @@
             "backend": [
                 {
                     "host": "http://localhost:3000",
-                    "url": "/v1/api/users"
+                    "url": "/users"
                 }
             ]
         }

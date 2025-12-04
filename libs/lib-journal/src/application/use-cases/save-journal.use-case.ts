@@ -19,7 +19,7 @@ export class SaveJournalUseCase<T> {
     constructor(
         private readonly config: ConfigService<T, true>,
         private readonly journalRepository: JournalRepository,
-        private readonly winstonLoggerService: WinstonLoggerService,
+        private readonly winstonLoggerService: WinstonLoggerService<T>,
     ) {
         this.isEnabled = this.config.get<T>('LIB_JOURNAL_ENABLED', { infer: true }) === "true" ? true : false;
     }

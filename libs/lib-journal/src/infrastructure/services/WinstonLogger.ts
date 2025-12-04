@@ -1,19 +1,20 @@
-import { AppConfig } from '@app/core/config';
-import { AppEnvironment } from '@app/core/types';
+
+import { UserAppConfig } from '@app/lib-core/config/user.env';
+import { AppEnvironment } from '@app/lib-core/types';
 import { Injectable, LoggerService } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { join } from 'path';
 import * as winston from 'winston';
-import DailyRotateFile from 'winston-daily-rotate-file';
+import DailyRotateFile = require('winston-daily-rotate-file');
 
 @Injectable()
-export class WinstonLoggerService implements LoggerService {
+export class WinstonLoggerService<T> implements LoggerService {
   private readonly logger: winston.Logger;
 
-  constructor(private readonly config: ConfigService<AppConfig, true>) {
-    const logsPath = join(this.config.get('LOGS_DIRECTORY', { infer: true }));
+  constructor(private readonly config: ConfigService<T, true>) {
+    const logsPath = join(this.config.get<T>('LOGS_DIRECTORY', { infer: true }).toString());
 
-    const mode = this.config.get('NODE_ENV', { infer: true });
+    const mode = this.config.get<T>('NODE_ENV', { infer: true });
     const logLevel = mode === AppEnvironment.Development ? 'warn' : 'error';
 
     const dailyRotateFile = new DailyRotateFile({

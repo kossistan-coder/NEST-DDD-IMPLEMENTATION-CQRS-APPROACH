@@ -15,6 +15,6 @@ import { JOURNAL_DATABASE_CONNECTION_NAME, LibCoreModule } from '@app/lib-core';
     ),
   ],
   providers: [JournalRepository, WinstonLoggerService],
-  exports: [JournalRepository, WinstonLoggerService],
+  exports: [JournalRepository, WinstonLoggerService, MongooseModule],
 })
 export class LibJournalInfrastructureModule { }

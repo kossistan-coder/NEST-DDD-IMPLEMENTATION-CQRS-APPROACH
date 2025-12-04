@@ -23,6 +23,13 @@ export class UserAppConfig {
     @IsNotEmpty()
     USER_MAIN_DATABASE_URI: string;
 
+    @IsString()
+    @IsNotEmpty()
+    JOURNAL_DATABASE_URI: string;
+
+    @IsString()
+    @IsNotEmpty()
+    LOGS_DIRECTORY: string;
 
     @IsString()
     @IsNotEmpty()
