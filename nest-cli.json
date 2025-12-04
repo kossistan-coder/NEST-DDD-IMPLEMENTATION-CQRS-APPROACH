@@ -63,6 +63,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/lib-mail/tsconfig.lib.json"
       }
+    },
+    "lib-journal": {
+      "type": "library",
+      "root": "libs/lib-journal",
+      "entryFile": "index",
+      "sourceRoot": "libs/lib-journal/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/lib-journal/tsconfig.lib.json"
+      }
     }
   }
 }

@@ -10,8 +10,14 @@ export class UserDocument extends Document {
     @Prop({ type: String, required: true, unique: true, lowercase: true })
     email: string;
 
+    @Prop({ type: String, required: true, unique: true })
+    telephone: string;
+
     @Prop({ type: String, required: true })
-    name: string;
+    firstName: string;
+
+    @Prop({ type: String, required: true })
+    lastName: string;
 
     @Prop({ type: String, required: true, default: 'ACTIVE' })
     status: string;
@@ -43,8 +49,10 @@ export class UserDocument extends Document {
     toDomain(): User {
         return new User({
             id: this.id,
-            name: this.name,
+            firstName: this.firstName,
+            lastName: this.lastName,
             email: this.email,
+            telephone: this.telephone,
             status: this.status,
             createdAt: this.createdAt,
             updatedAt: this.updatedAt,
@@ -57,8 +65,10 @@ export class UserDocument extends Document {
     static fromDomain(user: User): Partial<UserDocument> {
         return {
             id: user.getId(),
-            name: user.getName(),
+            firstName: user.getFirstName(),
+            lastName: user.getLastName(),
             email: user.getEmail(),
+            telephone: user.getTelephone(),
             passwordHash: user.getPassword(),
             status: user.getStatus(),
             createdAt: user.getCreatedAt(),

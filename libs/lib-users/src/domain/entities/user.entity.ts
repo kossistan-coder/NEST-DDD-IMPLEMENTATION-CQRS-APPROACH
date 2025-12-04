@@ -1,33 +1,39 @@
 export interface UserProps {
     id: string;
-    name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     password?: string | null | undefined;
+    telephone: string;
     status: string;
     createdAt: Date;
     updatedAt: Date;
-    preferences: Record<string, any>;
+    preferences?: Record<string, any> | null | undefined;
     isEmailVerified: boolean;
     lastLoginAt: Date;
 }
 
 export class User {
     private id: string;
-    private name: string;
+    private firstName: string;
+    private lastName: string;
     private email: string;
-    private password?: string | null | undefined;
+    public password?: string | null | undefined;
+    private telephone: string;
     private status: string;
     private createdAt: Date;
     private updatedAt: Date;
-    private preferences: Record<string, any>;
+    private preferences?: Record<string, any> | null | undefined;
     private isEmailVerified: boolean;
     private lastLoginAt: Date;
 
     constructor(props: UserProps) {
         this.id = props.id;
-        this.name = props.name;
+        this.firstName = props.firstName;
+        this.lastName = props.lastName;
         this.email = props.email;
         this.password = props.password;
+        this.telephone = props.telephone;
         this.status = props.status;
         this.createdAt = props.createdAt;
         this.updatedAt = props.updatedAt;
@@ -42,8 +48,12 @@ export class User {
     }
 
 
-    getName() {
-        return this.name;
+    getFirstName() {
+        return this.firstName;
+    }
+
+    getLastName() {
+        return this.lastName;
     }
 
     getEmail() {
@@ -52,6 +62,10 @@ export class User {
 
     getPassword() {
         return this.password;
+    }
+
+    getTelephone() {
+        return this.telephone;
     }
 
     getStatus() {

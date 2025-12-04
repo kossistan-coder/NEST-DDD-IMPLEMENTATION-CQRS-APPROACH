@@ -14,7 +14,8 @@ RUN npm install
 COPY . .
 
 # Copy the .env and .env.development files
-COPY .env ./
+# Copy the .env.development file if it exists, or just skip .env for now since we use docker-compose env
+# COPY .env ./
 
 # Creates a "dist" folder with the production build
 RUN npm run build

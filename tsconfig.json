@@ -59,6 +59,12 @@
       ],
       "@app/lib-mail/*": [
         "libs/lib-mail/src/*"
+      ],
+      "@app/lib-journal": [
+        "libs/lib-journal/src"
+      ],
+      "@app/lib-journal/*": [
+        "libs/lib-journal/src/*"
       ]
     }
   }

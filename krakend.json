@@ -1,5 +1,17 @@
 {
     "version": 3,
     "name": "Whatsapp Delivery API Gateway",
-    "endpoints": []
+    "port": 8080,
+    "endpoints": [
+        {
+            "endpoints": "/v1/api/users",
+            "method": "GET",
+            "backend": [
+                {
+                    "host": "http://localhost:3000",
+                    "url": "/v1/api/users"
+                }
+            ]
+        }
+    ]
 }

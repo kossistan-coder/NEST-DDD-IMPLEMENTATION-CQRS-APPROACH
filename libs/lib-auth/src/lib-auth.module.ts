@@ -1,8 +1,29 @@
 import { Module } from '@nestjs/common';
-import { LibAuthService } from './lib-auth.service';
+import { JwtModule } from '@nestjs/jwt';
+import { jwtConstants } from '@app/lib-core/constants/auth';
+import { LibUsersModule } from '@app/lib-users';
+import { AuthUserUseCase } from './application/use-cases/users/auth-user.use-case';
+import { AuthAdminUseCase } from './application/use-cases/admin/auth-admin.use-case';
 
 @Module({
-  providers: [LibAuthService],
-  exports: [LibAuthService],
+  imports: [
+    JwtModule.register({
+      global: true,
+      secret: jwtConstants.secret,
+      signOptions: {
+        expiresIn: '1h'
+      }
+
+    }),
+    LibUsersModule
+  ],
+  providers: [
+    AuthUserUseCase,
+    AuthAdminUseCase,
+  ],
+  exports: [
+    AuthUserUseCase,
+    AuthAdminUseCase
+  ],
 })
-export class LibAuthModule {}
+export class LibAuthModule { }

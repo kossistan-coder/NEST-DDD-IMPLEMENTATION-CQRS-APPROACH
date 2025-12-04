@@ -1,15 +1,30 @@
 version: "3.8"
 
 services:
-  api:
+  whatsapp_delivery_users:
     build: .
-    container_name: whatsapp_delivery_backend
+    container_name: whatsapp_delivery_users
+    command: [ "npm", "run", "start:users:prod" ]
     ports:
-      - "3000:3000"
+      - "3001:3001"
     depends_on:
       - mongodb
     environment:
-      MONGODB_URI: mongodb://root:password@mongodb:27017/whatsapp_delivery?authSource=admin
+      MONGODB_URI: mongodb://root:password@mongodb:27017/whatsapp_delivery_users?authSource=admin
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  whatsap_delivery_payment:
+    build: .
+    container_name: whatsap_delivery_payment
+    command: [ "npm", "run", "start:payment:prod" ]
+    ports:
+      - "3002:3002"
+    depends_on:
+      - mongodb
+    environment:
+      MONGODB_URI: mongodb://root:password@mongodb:27017/whatsapp_delivery_payment?authSource=admin
     volumes:
       - .:/app
       - /app/node_modules
@@ -48,7 +63,8 @@ services:
       - ./krakend.json:/etc/krakend/krakend.json
     command: [ "run", "-c", "/etc/krakend/krakend.json" ]
     depends_on:
-      - api
+      - whatsapp_delivery_users
+      - whatsap_delivery_payment
 
 volumes:
   mongo_data:
