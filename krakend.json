@@ -4,12 +4,14 @@
     "port": 8080,
     "endpoints": [
         {
-            "endpoints": "/v1/api/users",
-            "method": "GET",
+            "endpoint": "/api/v1/users",
+            "method": "POST",
             "backend": [
                 {
-                    "host": "http://localhost:3000",
-                    "url": "/users"
+                    "host": [
+                        "http://whatsapp_delivery_users:3001"
+                    ],
+                    "url_pattern": "/users"
                 }
             ]
         }

@@ -10,7 +10,7 @@ services:
     depends_on:
       - mongodb
     environment:
-      MONGODB_URI: mongodb://root:password@mongodb:27017/whatsapp_delivery_users?authSource=admin
+      USER_MAIN_DATABASE_URI: mongodb://root:password@mongodb:27017/whatsapp_delivery_users?authSource=admin
     volumes:
       - .:/app
       - /app/node_modules
@@ -24,7 +24,7 @@ services:
     depends_on:
       - mongodb
     environment:
-      MONGODB_URI: mongodb://root:password@mongodb:27017/whatsapp_delivery_payment?authSource=admin
+      USER_MAIN_DATABASE_URI: mongodb://root:password@mongodb:27017/whatsapp_delivery_payment?authSource=admin
     volumes:
       - .:/app
       - /app/node_modules

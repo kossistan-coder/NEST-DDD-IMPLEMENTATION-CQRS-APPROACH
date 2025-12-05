@@ -27,3 +27,32 @@ libs/
             │
             └── repositories/
                 └── user.repository.ts             # ← TON CODE GAGNANT CI-DESSOUS
+
+
+
+                       ┌───────────────────┐
+       │   Client / App    │
+       └─────────┬─────────┘
+                 │ HTTP
+                 ▼
+       ┌───────────────────┐
+       │      Krakend      │  ← API Gateway externe
+       └─────────┬─────────┘
+                 │ HTTP
+                 ▼
+       ┌───────────────────┐
+       │ HTTP Gateway (BFF)│  ← Adaptateur HTTP → TCP
+       └─────────┬─────────┘
+                 │ TCP
+ ┌───────────────┴───────────────┐
+ │         Microservices          │
+ │ ┌───────────────┐ ┌──────────┐│
+ │ │ Users (TCP)   │ │ Payment  ││
+ │ │ Port 3001     │ │ Port 3002││
+ │ └───────────────┘ └──────────┘│
+ └───────────────┬───────────────┘
+                 │
+                 ▼
+           ┌───────────┐
+           │ RabbitMQ  │  ← Event bus pour communication asynchrone
+           └───────────┘

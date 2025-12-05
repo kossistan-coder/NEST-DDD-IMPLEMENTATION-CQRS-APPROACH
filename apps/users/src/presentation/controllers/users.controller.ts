@@ -7,7 +7,7 @@ import { Body, Controller, Get, Post, Req, Res, ValidationPipe } from '@nestjs/c
 import { EventPattern } from '@nestjs/microservices';
 import { Request, Response } from 'express';
 
-@Controller()
+@Controller("users")
 export class UsersController {
   constructor(
     private readonly createUserUseCase: CreateUserUseCase,
