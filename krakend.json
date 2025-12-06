@@ -9,9 +9,9 @@
             "backend": [
                 {
                     "host": [
-                        "http://whatsapp_delivery_users:3001"
+                        "http://localhost:4000/api-gateway/create-user"
                     ],
-                    "url_pattern": "/users"
+                    "url_pattern": "/create-user"
                 }
             ]
         }
