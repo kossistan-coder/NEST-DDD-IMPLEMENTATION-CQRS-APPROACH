@@ -13,33 +13,42 @@ import {
 import { AppEnvironment } from '../types';
 import { plainToInstance, Transform, Type } from 'class-transformer';
 
-export class UserAppConfig {
+export class ApiGatewayAppConfig {
 
     @IsEnum(AppEnvironment)
     NODE_ENV: AppEnvironment;
 
-
-    @IsString()
-    @IsNotEmpty()
-    USER_MAIN_DATABASE_URI: string;
-
-    @IsString()
-    @IsNotEmpty()
-    JOURNAL_DATABASE_URI: string;
-
-    @IsString()
-    @IsNotEmpty()
-    LOGS_DIRECTORY: string;
-
-    @IsString()
-    @IsNotEmpty()
     @Transform(({ value }) => parseInt(value))
-    PORT_USER: string;
+    PORT_GATEWAY: number
+
+    @Transform(({ value }) => parseInt(value))
+    PORT_USER: number
+
+    @Transform(({ value }) => parseInt(value))
+    PORT_AUTH: number
+
+    @Transform(({ value }) => parseInt(value))
+    PORT_PAYMENT: number
+
+    @IsString()
+    USER_SERVICE_HOST: string
+
+    @IsString()
+    AUTH_SERVICE_HOST: string
+
+    @IsString()
+    PAYMENT_SERVICE_HOST: string
+
+    @Transform(({ value }) => value === 'true')
+    LIB_JOURNAL_ENABLED: boolean
+
+    @IsString()
+    LOGS_DIRECTORY: string
 
 }
 
 export function validateUserAppConfig(payload: Record<string, any>) {
-    const config = plainToInstance(UserAppConfig, payload, {
+    const config = plainToInstance(ApiGatewayAppConfig, payload, {
         exposeDefaultValues: true,
     });
 
@@ -57,7 +66,7 @@ export function validateUserAppConfig(payload: Record<string, any>) {
             .join('\n');
 
         throw new Error(
-            `${UserAppConfig.name} environment variables validation failed\n${message}`,
+            `${ApiGatewayAppConfig.name} environment variables validation failed\n${message}`,
         );
     }
 

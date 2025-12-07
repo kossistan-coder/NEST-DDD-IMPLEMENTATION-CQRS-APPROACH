@@ -1,6 +1,16 @@
 version: "3.8"
 
 services:
+  api-gateway:
+    build: ./apps/api-gateway
+    container_name: api-gateway
+    env_file:
+      - ./apps/api-gateway/.env.development
+    ports:
+      - "4000:4000"
+    depends_on:
+      - whatsapp_delivery_users
+      - whatsap_delivery_payment
   whatsapp_delivery_users:
     build: .
     container_name: whatsapp_delivery_users
